@@ -1,3 +1,29 @@
+This moodle module plays .mp4 videos hosted on Amazon's CloudFront service.
+
+It uses private streaming distributions.
+
+It's based on the template module moodle-mod_newmodule.
+
+I modified the following files of the moodle_mod-newmodule:
+- view.php (some very ugly echos in there!)
+- version.php
+- locallib.php (100% copy from an example given by Amazon's Lance Byrd)
+- db/install.xml
+- lang/en/cloudfront.php (but it was not working correctly so I used
+directly coded strings in view.php)
+
+I used JW Player 5
+
+I added swfobjects.js, also provided by Lance Byrd
+
+Lance Byrd's tutorial (careful: huge, contains video instructions for
+setup):
+http://d2930476l2fsmh.cloudfront.net/cloudfront-private-stream-with-php.zip
+
+
+======================== ORIGINAL README ==========================
+
+
 The following steps should get you up and running with
 this module template code.
 
