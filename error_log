@@ -1,0 +1,2 @@
+[30-Sep-2012 01:49:16 UTC] PHP Parse error:  syntax error, unexpected T_ECHO, expecting ',' or ';' in /home2/softwbd4/public_html/moodle/mod/cloudfront/view.php on line 106
+[30-Sep-2012 01:49:34 UTC] PHP Parse error:  syntax error, unexpected T_ECHO, expecting ',' or ';' in /home2/softwbd4/public_html/moodle/mod/cloudfront/view.php on line 106

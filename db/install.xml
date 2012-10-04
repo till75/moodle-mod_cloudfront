@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/cloudfront/db" VERSION="20101203" COMMENT="XMLDB file for Moodle mod/cloudfront"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="cloudfront" COMMENT="Titles, video file and player dimensions" NEXT="cloudfront_psd">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="course"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course cloudfront activity belongs to" PREVIOUS="id" NEXT="name"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances" PREVIOUS="course" NEXT="intro"/>
+        <FIELD NAME="intro" TYPE="text" LENGTH="big" NOTNULL="false" SEQUENCE="false" COMMENT="General introduction of the cloudfront activity" PREVIOUS="name" NEXT="introformat"/>
+        <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Format of the intro field (MOODLE, HTML, MARKDOWN...)" PREVIOUS="intro" NEXT="timecreated"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="introformat" NEXT="timemodified"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="timecreated" NEXT="psd_name"/>
+        <FIELD NAME="psd_name" TYPE="char" LENGTH="50" NOTNULL="true" SEQUENCE="false" COMMENT="FK" PREVIOUS="timemodified" NEXT="psd_subdomain"/>
+		<FIELD NAME="psd_subdomain" TYPE="char" LENGTH="25" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="psd_name" NEXT="keypair_id"/>
+		<FIELD NAME="keypair_id" TYPE="char" LENGTH="30" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="psd_subdomain" NEXT="pkey_filename"/>
+		<FIELD NAME="pkey_filename" TYPE="char" LENGTH="255" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" PREVIOUS="keypair_id" NEXT="video_filename"/>
+        <FIELD NAME="video_filename" TYPE="char" LENGTH="50" NOTNULL="true" SEQUENCE="false" COMMENT="name field for the video file - without file extension!" PREVIOUS="pkey_filename" NEXT="player_width"/>
+        <FIELD NAME="player_width" TYPE="int" LENGTH="4" NOTNULL="true" UNSIGNED="true" DEFAULT="640" SEQUENCE="false" PREVIOUS="video_filename" NEXT="player_height"/>
+        <FIELD NAME="player_height" TYPE="int" LENGTH="4" NOTNULL="true" UNSIGNED="true" DEFAULT="480" SEQUENCE="false" PREVIOUS="player_width"/>
+        <FIELD NAME="expires" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="30" SEQUENCE="false" COMMENT="Time until streaming link expires" PREVIOUS="player_height"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+     </KEYS>
+      <INDEXES>
+        <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>
